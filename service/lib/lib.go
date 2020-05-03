@@ -3,6 +3,7 @@ package lib
 import (
 	"io/ioutil"
 	"log"
+	"ninety9names/models"
 	"strings"
 
 	"github.com/360EntSecGroup-Skylar/excelize"
@@ -14,7 +15,6 @@ func ConvertToCSV(readPath, writePath, sheet string) error {
 	if err != nil {
 		return err
 	}
-	log.Print("file opened")
 
 	var data []string
 	for _, row := range file.GetRows(sheet) {
@@ -23,9 +23,28 @@ func ConvertToCSV(readPath, writePath, sheet string) error {
 		}
 		data = append(data, strings.Join(row[1:], ","))
 	}
-	log.Print("data read into memory")
 
 	ioutil.WriteFile(writePath, []byte(strings.Join(data, "\n")), 0644)
-	log.Printf("file created succesfully at %s", writePath)
+	log.Printf("file created successfully at %s", writePath)
 	return nil
+}
+
+//ReadNames reads input from csv and converts to names struct
+func ReadNames(path string) ([]models.Name, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return []models.Name{}, err
+	}
+	names := []models.Name{}
+	for _, l := range strings.Split(string(data), "\n")[1:] {
+		e := strings.Split(l, ",")
+		names = append(names, models.Name{
+			Arabic:          e[0],
+			Transliteration: e[1],
+			MeaningShaykh:   e[2],
+			Meaning:         e[3],
+			Explanation:     e[4],
+		})
+	}
+	return names, nil
 }
