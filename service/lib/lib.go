@@ -29,23 +29,21 @@ func ConvertToCSV(readPath, writePath, sheet string) error {
 	return nil
 }
 
-//ReadNames reads input from csv and converts to names struct
-func ReadNames(path string) ([]models.Name, error) {
+//SetNames reads input from csv and creates names map
+func SetNames(path string) error {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
-		return []models.Name{}, err
+		return err
 	}
-	names := []models.Name{}
 	for i, l := range strings.Split(string(data), "\n")[1:] {
 		e := strings.Split(l, ",")
-		names = append(names, models.Name{
-			Number:          i,
+		models.Names[i] = models.Name{
 			Arabic:          e[0],
 			Transliteration: e[1],
 			MeaningShaykh:   e[2],
 			Meaning:         e[3],
 			Explanation:     e[4],
-		})
+		}
 	}
-	return names, nil
+	return nil
 }

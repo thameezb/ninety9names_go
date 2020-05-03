@@ -1,11 +1,10 @@
 package models
 
 //Names acts as an in memory cache of the list of names
-var Names []Name
+var Names map[int]Name
 
 //Name represents one of the 99 names
 type Name struct {
-	Number          int    `json:"number"`
 	Arabic          string `json:"arabic"`
 	Transliteration string `json:"transliteration"`
 	MeaningShaykh   string `json:"meaning_shaykh"`
