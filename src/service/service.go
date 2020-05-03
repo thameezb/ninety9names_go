@@ -1,24 +1,25 @@
 package service
 
 import (
-	"fmt"
-	"math/rand"
-
 	"github.com/thameezb/ninety9names/src/models"
+	"github.com/thameezb/ninety9names/src/repository"
 )
 
+type Interface interface {
+	GetAll() ([]models.Name, error)
+	GetName(id string) (models.Name, error)
+}
+
+type Service struct {
+	DB repository.Interface
+}
+
 //GetAll returns a full list of the 99 names
-func GetAll() map[int]models.Name {
-	return models.Names
+func (s *Service) GetAll() ([]models.Name, error) {
+	return s.DB.GetAll()
 }
 
 //GetName returns name associated with i, if no arg is sent, a random name is returned
-func GetName(i int) (models.Name, error) {
-	if i == -1 {
-		i = rand.Intn(98)
-	}
-	if i > 99 || i < 1 {
-		return models.Name{}, fmt.Errorf("number must be between 1-99")
-	}
-	return models.Names[i-1], nil
+func (s *Service) GetName(id string) (models.Name, error) {
+	return s.DB.GetName(id)
 }
