@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	"ninety9names/service/lib"
+
+	"github.com/thameezb/ninety9names/src/lib"
 )
 
 func readData() {
