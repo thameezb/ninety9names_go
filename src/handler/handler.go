@@ -24,7 +24,8 @@ func (h *Handler) Ping(c *gin.Context) {
 func (h *Handler) GetAll(c *gin.Context) {
 	names, err := h.Service.GetAll()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, err)
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, names)
 }
@@ -32,7 +33,8 @@ func (h *Handler) GetAll(c *gin.Context) {
 func (h *Handler) GetName(c *gin.Context) {
 	name, err := h.Service.GetName(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, err)
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
 	}
 	c.JSON(http.StatusOK, name)
 }

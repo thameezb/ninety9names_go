@@ -33,7 +33,7 @@ func New(dbURL string) Interface {
 func (r *repoImpl) InsertName(name models.Name) error {
 	_, err := r.db.NamedExec(`
 	INSERT INTO names 
-		VALUES (:id, :arabic, :transliteration, :meaningShaykh, :meaningGeneral, :explanation)
+		VALUES (:id, :arabic, :transliteration, :meaning_shaykh, :meaning_general, :explanation)
 	`, &name)
 	return err
 }
