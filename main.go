@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"ninety9names/models"
 	"ninety9names/service/lib"
 )
 
@@ -12,7 +11,7 @@ func readData() {
 		log.Print(err)
 	}
 
-	models.Names, err = lib.ReadNames("./input/input.csv")
+	err = lib.SetNames("./input/input.csv")
 	if err != nil {
 		log.Print(err)
 	}
