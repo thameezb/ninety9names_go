@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS names(
-   id                   INT      PRIMARY KEY,
+   id                   VARCHAR       PRIMARY KEY,
    arabic               VARCHAR UNIQUE NOT NULL,
    translitiration      VARCHAR UNIQUE NOT NULL,
    meaningShaykh        VARCHAR NOT NULL,
