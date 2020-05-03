@@ -5,40 +5,36 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/thameezb/ninety9names/src/handlers"
-	"github.com/thameezb/ninety9names/src/lib"
+	"github.com/thameezb/ninety9names/src/handler"
+	"github.com/thameezb/ninety9names/src/repository"
+	"github.com/thameezb/ninety9names/src/service"
 )
 
-func readData() {
-	err := lib.ConvertToCSV("orig.xlsx", "./input/input.csv", "Names")
-	if err != nil {
-		log.Print(err)
-	}
-
-	err = lib.SetNames("./input/input.csv")
-	if err != nil {
-		log.Print(err)
-	}
-}
-
-func router(port string) {
+func router(port string, h handler.Interface) {
 	router := gin.Default()
 	router.Use(gin.Logger())
 
-	router.GET("/ping", handlers.Ping)
-	router.GET("/bff/names", handlers.GetAll)
-	router.GET("/bff/names/:id", handlers.GetName)
+	router.GET("/ping", h.Ping)
+	router.GET("/bff/names", h.GetAll)
+	router.GET("/bff/names/:id", h.GetName)
 
 	router.Run(":" + port)
 }
 
 func main() {
 	port := os.Getenv("PORT")
-
 	if port == "" {
 		log.Fatal("$PORT must be set")
 	}
 
-	readData()
-	router(port)
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("$DATABASE_URL must be set")
+	}
+
+	db := repository.New(dbURL)
+	s := &service.Service{db}
+	h := &handler.Handler{s}
+
+	router(port, h)
 }

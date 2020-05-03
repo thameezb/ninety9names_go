@@ -1,8 +1,5 @@
 package models
 
-//Names acts as an in memory cache of the list of names
-var Names map[int]Name
-
 //Name represents one of the 99 names
 type Name struct {
 	ID              string `db:"id" 				json:"id"`

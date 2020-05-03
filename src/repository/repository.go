@@ -12,6 +12,9 @@ import (
 
 type Interface interface {
 	InsertName(name models.Name) error
+	GetName(id string) (models.Name, error)
+
+	GetAll() ([]models.Name, error)
 	DeleteAll() error
 }
 
@@ -33,6 +36,18 @@ func (r *repoImpl) InsertName(name models.Name) error {
 		VALUES (:id, :arabic, :transliteration, :meaningShaykh, :meaningGeneral, :explanation)
 	`, &name)
 	return err
+}
+
+func (r *repoImpl) GetName(id string) (models.Name, error) {
+	var name models.Name
+	err := r.db.Get(&name, `SELECT * FROM names WHERE id = $1`, id)
+	return name, err
+}
+
+func (r *repoImpl) GetAll() ([]models.Name, error) {
+	var names []models.Name
+	err := r.db.Select(&names, `SELECT * FROM names`)
+	return names, err
 }
 
 func (r *repoImpl) DeleteAll() error {
