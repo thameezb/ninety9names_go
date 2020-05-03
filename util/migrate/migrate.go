@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = m.Steps(1)
+	err = m.Up()
 	if err != nil {
 		log.Fatal(err)
 	}
