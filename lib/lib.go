@@ -35,6 +35,8 @@ func SetNames(path string) error {
 	if err != nil {
 		return err
 	}
+
+	models.Names = make(map[int]models.Name)
 	for i, l := range strings.Split(string(data), "\n")[1:] {
 		e := strings.Split(l, ",")
 		models.Names[i] = models.Name{
