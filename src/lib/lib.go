@@ -3,10 +3,11 @@ package lib
 import (
 	"io/ioutil"
 	"log"
-	"ninety9names/models"
+
 	"strings"
 
 	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/thameezb/ninety9names/src/models"
 )
 
 //ConverttoCSV reads in an excel file from readPath, converts sheet to csv stored at writePath
