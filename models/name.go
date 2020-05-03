@@ -5,9 +5,10 @@ var Names []Name
 
 //Name represents one of the 99 names
 type Name struct {
-	Arabic          string
-	Transliteration string
-	MeaningShaykh   string
-	Meaning         string
-	Explanation     string
+	Number          int    `json:"number"`
+	Arabic          string `json:"arabic"`
+	Transliteration string `json:"transliteration"`
+	MeaningShaykh   string `json:"meaning_shaykh"`
+	Meaning         string `json:"meaning_general"`
+	Explanation     string `json:"explanation"`
 }

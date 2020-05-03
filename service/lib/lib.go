@@ -36,9 +36,10 @@ func ReadNames(path string) ([]models.Name, error) {
 		return []models.Name{}, err
 	}
 	names := []models.Name{}
-	for _, l := range strings.Split(string(data), "\n")[1:] {
+	for i, l := range strings.Split(string(data), "\n")[1:] {
 		e := strings.Split(l, ",")
 		names = append(names, models.Name{
+			Number:          i,
 			Arabic:          e[0],
 			Transliteration: e[1],
 			MeaningShaykh:   e[2],

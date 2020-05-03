@@ -6,7 +6,7 @@ import (
 	"ninety9names/service/lib"
 )
 
-func main() {
+func readData() {
 	err := lib.ConvertToCSV("orig.xlsx", "./input/input.csv", "Names")
 	if err != nil {
 		log.Print(err)
@@ -16,4 +16,8 @@ func main() {
 	if err != nil {
 		log.Print(err)
 	}
+}
+
+func main() {
+	readData()
 }
