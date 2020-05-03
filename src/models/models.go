@@ -5,9 +5,9 @@ var Names map[int]Name
 
 //Name represents one of the 99 names
 type Name struct {
-	Arabic          string `json:"arabic"`
-	Transliteration string `json:"transliteration"`
-	MeaningShaykh   string `json:"meaning_shaykh"`
-	Meaning         string `json:"meaning_general"`
-	Explanation     string `json:"explanation"`
+	Arabic          string `db:"arabic" 			json:"arabic"`
+	Transliteration string `db:"transliteration" 	json:"transliteration"`
+	MeaningShaykh   string `db:"meaningShaykh" 		json:"meaning_shaykh"`
+	MeaningGeneral  string `db:"meaningGeneral" 	json:"meaning_general"`
+	Explanation     string `db:"explanation" 		json:"explanation"`
 }
