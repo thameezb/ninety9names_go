@@ -12,3 +12,6 @@ Implementation of SA Bodhanya's Excel 99names application
 - Branch names should be descriptive or linked to a detailed issue 
 
  Please consider the master branch as stable (at all times)
+
+## Architecture and design
+Please see [issue](https://github.com/thameezb/ninety9names/issues/8) for currently proposed architecture and design. Comments/ideas/thoughts are welcome 
