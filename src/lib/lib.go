@@ -44,7 +44,7 @@ func SetNames(path string) error {
 			Arabic:          e[0],
 			Transliteration: e[1],
 			MeaningShaykh:   e[2],
-			Meaning:         e[3],
+			MeaningGeneral:  e[3],
 			Explanation:     e[4],
 		}
 	}
