@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>99 Names of Allah(SWT)</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Arabic</th>
+    <th>Transliteration</th>
+    <th>Shaykh's meaning</th>
+    <th>Meaning</th>
+    <th>Explanation</th>
+  </tr>
+  {{ range $name := .names }}
+  <tr>
+    <td>{{ .ID }}</td>
+    <td>{{ .Arabic }}</td>
+    <td>{{ .Transliteration }}</td>
+    <td>{{ .MeaningShaykh }}</td>
+    <td>{{ .MeaningGeneral }}</td>
+    <td>{{ .Explanation }}</td>
+  </tr>
+  {{ end }}
+</table>
+
+</body>
+</html>

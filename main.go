@@ -13,11 +13,12 @@ import (
 func router(port string, h handler.Interface) {
 	router := gin.Default()
 	router.Use(gin.Logger())
+	router.LoadHTMLGlob("resources/templates/*")
 
-	router.GET("/ping", h.Ping)
 	router.GET("/bff/names", h.GetAll)
 	router.GET("/bff/names/:id", h.GetName)
-
+	router.GET("/ping", h.Ping)
+	router.GET("/", h.GetRoot)
 	router.Run(":" + port)
 }
 

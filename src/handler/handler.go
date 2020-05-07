@@ -11,6 +11,7 @@ type Interface interface {
 	Ping(c *gin.Context)
 	GetAll(c *gin.Context)
 	GetName(c *gin.Context)
+	GetRoot(c *gin.Context)
 }
 
 type Handler struct {
@@ -19,6 +20,17 @@ type Handler struct {
 
 func (h *Handler) Ping(c *gin.Context) {
 	c.JSON(http.StatusOK, "pong")
+}
+
+func (h *Handler) GetRoot(c *gin.Context) {
+	names, err := h.Service.GetAll()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.HTML(http.StatusOK, "names.tmpl", gin.H{
+		"names": names,
+	})
 }
 
 func (h *Handler) GetAll(c *gin.Context) {
