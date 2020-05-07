@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>{{ .name.Transliteration }} {{ .name.Arabic }} </h2>
+        <div>
+            <ul>
+                <li>Arabic: {{ .name.Arabic }}</li>
+                <li>Transliteration: {{ .name.Transliteration }}</li>
+                <li>Shaykh's meaning: {{ .name.MeaningShaykh }}</li>
+                <li>Meaning: {{ .name.MeaningGeneral }}</li>
+                <li>Explanation: {{ .name.Explanation }}</li>
+            </ul>
+        </div>
+    </body>
+</html>
