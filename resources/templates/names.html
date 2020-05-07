@@ -22,7 +22,16 @@
   <body>
 
     <h2>99 Names of Allah(SWT)</h2>
-
+    <div>
+      <a href='/challenge/arabic'>
+        <button>Challenge - Arabic </button>  
+      </a>
+    </div>
+    <div>
+      <a href='/challenge/english'>
+        <button>Challenge - English </button>  
+      </a>
+    </div>
     <table>
       <tr>
         <th>ID</th>
@@ -34,7 +43,7 @@
       </tr>
       {{ range $name := .names }}
       <tr>
-        <td><a href='name/{{ .ID }}'>{{ .ID }}</a></td>
+        <td><a href='names/{{ .ID }}'>{{ .ID }}</a></td>
         <td>{{ .Arabic }}</td>
         <td>{{ .Transliteration }}</td>
         <td>{{ .MeaningShaykh }}</td>

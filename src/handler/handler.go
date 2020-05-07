@@ -13,7 +13,8 @@ type Interface interface {
 	GetName(c *gin.Context)
 	GetAllNames(c *gin.Context)
 	GetSpecificName(c *gin.Context)
-	GetRandomName(c *gin.Context)
+	GetRandomEnglish(c *gin.Context)
+	GetRandomArabic(c *gin.Context)
 }
 
 type Handler struct {
@@ -36,15 +37,7 @@ func (h *Handler) GetAllNames(c *gin.Context) {
 }
 
 func (h *Handler) GetSpecificName(c *gin.Context) {
-	h.getName(c.Param("id"), c)
-}
-
-func (h *Handler) GetRandomName(c *gin.Context) {
-	h.getName("", c)
-}
-
-func (h *Handler) getName(id string, c *gin.Context) {
-	name, err := h.Service.GetName(id)
+	name, err := h.Service.GetName(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
@@ -52,6 +45,26 @@ func (h *Handler) getName(id string, c *gin.Context) {
 	c.HTML(http.StatusFound, "name.html", gin.H{
 		"name": name,
 	})
+}
+
+func (h *Handler) getRandom(c *gin.Context, english bool) {
+	name, err := h.Service.GetName("")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.HTML(http.StatusFound, "challenge.html", gin.H{
+		"name": name,
+		"eng":  english,
+	})
+}
+
+func (h *Handler) GetRandomEnglish(c *gin.Context) {
+	h.getRandom(c, true)
+}
+
+func (h *Handler) GetRandomArabic(c *gin.Context) {
+	h.getRandom(c, false)
 }
 
 func (h *Handler) GetAll(c *gin.Context) {

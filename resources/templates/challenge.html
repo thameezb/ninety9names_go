@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>Challenge Yourself</h2>
+        <div>
+            {{ if .eng }}
+            <h3>Do you know the arabic meaning of {{ .name.MeaningShaykh }}?</h3>
+            {{ else }}
+            <h3>Do you know the english meaning of {{ .name.Transliteration }} - {{ .name.Arabic }}?</h3>
+            {{ end }}
+            <a href='/names/{{ .name.ID }}'>
+                <button>Click to see solution</button>  
+            </a>
+        </div>
+    </body>
+</html>
