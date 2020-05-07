@@ -28,7 +28,7 @@ func (h *Handler) GetRoot(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	c.HTML(http.StatusOK, "names.tmpl", gin.H{
+	c.HTML(http.StatusOK, "names.html", gin.H{
 		"names": names,
 	})
 }
