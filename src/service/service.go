@@ -25,7 +25,7 @@ func (s *Service) GetAll() ([]models.Name, error) {
 
 //GetName returns name associated with i, if r is sent, a random name is returned
 func (s *Service) GetName(id string) (models.Name, error) {
-	if id == "r" {
+	if id == "r" || id == "" {
 		id = strconv.Itoa(rand.Intn(98) + 1)
 	} else {
 		i, err := strconv.Atoi(id)

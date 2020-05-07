@@ -18,7 +18,9 @@ func router(port string, h handler.Interface) {
 	router.GET("/bff/names", h.GetAll)
 	router.GET("/bff/names/:id", h.GetName)
 	router.GET("/ping", h.Ping)
-	router.GET("/", h.GetRoot)
+	router.GET("/", h.GetAllNames)
+	router.GET("/name/", h.GetRandomName)
+	router.GET("/name/:id", h.GetSpecificName)
 	router.Run(":" + port)
 }
 

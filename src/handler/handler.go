@@ -11,7 +11,9 @@ type Interface interface {
 	Ping(c *gin.Context)
 	GetAll(c *gin.Context)
 	GetName(c *gin.Context)
-	GetRoot(c *gin.Context)
+	GetAllNames(c *gin.Context)
+	GetSpecificName(c *gin.Context)
+	GetRandomName(c *gin.Context)
 }
 
 type Handler struct {
@@ -22,7 +24,7 @@ func (h *Handler) Ping(c *gin.Context) {
 	c.JSON(http.StatusOK, "pong")
 }
 
-func (h *Handler) GetRoot(c *gin.Context) {
+func (h *Handler) GetAllNames(c *gin.Context) {
 	names, err := h.Service.GetAll()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err.Error())
@@ -30,6 +32,25 @@ func (h *Handler) GetRoot(c *gin.Context) {
 	}
 	c.HTML(http.StatusOK, "names.html", gin.H{
 		"names": names,
+	})
+}
+
+func (h *Handler) GetSpecificName(c *gin.Context) {
+	h.getName(c.Param("id"), c)
+}
+
+func (h *Handler) GetRandomName(c *gin.Context) {
+	h.getName("", c)
+}
+
+func (h *Handler) getName(id string, c *gin.Context) {
+	name, err := h.Service.GetName(id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.HTML(http.StatusFound, "name.html", gin.H{
+		"name": name,
 	})
 }
 
