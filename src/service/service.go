@@ -28,8 +28,8 @@ func (s *Service) GetName(id string) (models.Name, error) {
 	if id == "r" {
 		id = strconv.Itoa(rand.Intn(98) + 1)
 	} else {
-		_, err := strconv.Atoi(id)
-		if err != nil {
+		i, err := strconv.Atoi(id)
+		if err != nil || i < 0 || i > 99 {
 			return models.Name{}, errors.New("id must be between 1-99 or r for random")
 		}
 	}
