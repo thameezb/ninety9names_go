@@ -15,12 +15,14 @@ func router(port string, h handler.Interface) {
 	router.Use(gin.Logger())
 	router.LoadHTMLGlob("resources/templates/*")
 
+	router.GET("/ping", h.Ping)
+
 	router.GET("/bff/names", h.GetAll)
 	router.GET("/bff/names/:id", h.GetName)
-	router.GET("/ping", h.Ping)
+
 	router.GET("/", h.GetAllNames)
-	router.GET("/name/", h.GetRandomName)
-	router.GET("/name/:id", h.GetSpecificName)
+	router.GET("/names/:id", h.GetSpecificName)
+
 	router.Run(":" + port)
 }
 
