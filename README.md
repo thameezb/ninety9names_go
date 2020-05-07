@@ -3,14 +3,14 @@ Implementation of SA Bodhanya's Excel 99names application
 
 ## Utilities
 - [migrate](./util/migrate/migrate.go)
- - Runs [migrations](./migrations) against PSQL DB 
-    - Run command `go run ./util/migrate/migrate.go` to run all migrations found 
-    - env var `DATABASE_URL` must be set
+    - Runs [migrations](./migrations) against PSQL DB 
+        - Run command `go run ./util/migrate/migrate.go` to run all migrations found 
+        - env var `DATABASE_URL` must be set
 - [injest](./util/injest/injest.go)
- - Injests data from [original excel file](orig.xlsx) and writes to database
-    - Run command `go run ./util/injest/injest.go` to run data injest 
-    - env var `DATABASE_URL` must be set
-    - *NOTE* This delete all current data from `names` table.
+    - Injests data from [original excel file](orig.xlsx) and writes to database
+        - Run command `go run ./util/injest/injest.go` to run data injest 
+        - env var `DATABASE_URL` must be set
+        - *NOTE* This deletes all current data from `names` table.
 
 ## How to contribute
 - Please see [issues](https://github.com/thameezb/ninety9names/issues/) to assit with currently required tasks
