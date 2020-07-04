@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/thameezb/ninety9names/src/handler"
 	"github.com/thameezb/ninety9names/src/repository"
@@ -13,6 +14,8 @@ import (
 func router(port string, h handler.Interface) {
 	router := gin.Default()
 	router.Use(gin.Logger())
+	router.Use(cors.Default())
+
 	router.LoadHTMLGlob("resources/templates/*")
 
 	router.GET("/ping", h.Ping)
