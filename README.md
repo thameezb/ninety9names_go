@@ -1,6 +1,10 @@
 # ninety9names
 Implementation of SA Bodhanya's Excel 99names application  
 
+# DEPRECATION MESSAGE
+Please note that this now solely acts as an API server for -> https://github.com/thameezb/ninety9names_flutter. As such no new features will be added.
+Once the flutter app is shifted to a firebase DB, this repo will be completely deprecated.
+
 ## Utilities
 - [migrate](./util/migrate/migrate.go)
     - Runs [migrations](./migrations) against PSQL DB 
