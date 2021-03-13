@@ -16,7 +16,11 @@ func main() {
 	}
 	db := repository.New(dbURL)
 
-	file, err := excelize.OpenFile("orig.xlsx")
+	filePath := os.Getenv("SOURCE_FILE")
+	if filePath == "" {
+		filePath = "orig.xlsx"
+	}
+	file, err := excelize.OpenFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
